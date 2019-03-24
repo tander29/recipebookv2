@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Recipe</title>
+  </head>
+  <body>
+    <h1>Recipebook</h1>
+    {%if request.user.author%}
+    <div>
+      <form action="/favorite/{{ recipe.id }}" method="POST">
+        {% csrf_token %}
+        <input type="submit" name="favorite" value="Favorite" />
+      </form>
+      {{ favorited }}
+    </div>
+    {%endif%}
+    <h2 id="recipe">{{ recipe.title }}</h2>
+    <p>
+      author - <a href="/author/{{ recipe.author.id }}">{{ recipe.author }}</a>
+    </p>
+    <p>description - {{ recipe.description }}</p>
+    <p>instructions - {{ recipe.instructions }}</p>
+    <p>time - {{ recipe.time_required }} min</p>
+  </body>
+
+  {%if form%}
+  <div>
+    Edit the Recipe: Don't worry, only the creator and staff who are better than
+    you can edit
+  </div>
+  {% include "generic_form.html"%} {% endif%}
+</html>

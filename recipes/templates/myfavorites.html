@@ -1,0 +1,11 @@
+<h1>Favorites</h1>
+
+<ul id="recipe">
+  {% for recipe in recipes %} {%if not recipes%}
+  <div>Nothin here</div>
+  {%endif%}
+  <li>
+    <a href="../recipe/{{ recipe.id }}">{{ recipe.title }}</a>
+  </li>
+  {% endfor %}
+</ul>
